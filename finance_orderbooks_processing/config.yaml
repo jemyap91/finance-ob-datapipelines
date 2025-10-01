@@ -2,7 +2,7 @@
 catalog:
   name: "orderbooks_main"
   schema: "bronze"
-  table: "orderbook_data"
+  table: "orderbook"
   process_log_table: "file_processing_log"
 
 # Volume Configuration

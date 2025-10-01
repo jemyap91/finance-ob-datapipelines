@@ -100,3 +100,36 @@ def process_excel_file(file_info):
         import traceback
         traceback.print_exc()
         return pd.DataFrame()
+    
+    
+def normalize_column_names(df):
+    """
+    Normalize pandas DataFrame column names to match the Delta table schema.
+    """
+    column_mapping = {
+        'Office (Div)': 'office_div',
+        'Location (Country)': 'location_country',
+        'Gross Fee (USD)': 'gross_fee_usd',
+        'Fee Earned (USD)': 'fee_earned_usd',
+        'Gross Fee Yet To Be Earned (USD)': 'gross_fee_yet_to_be_earned_usd',
+        'Anticipated EndDate': 'anticipated_end_date',
+        'StartDate': 'StartDate',
+        'ProjectType': 'ProjectType'
+    }
+    
+    # Rename columns
+    df = df.rename(columns=column_mapping)
+    
+    # Convert column names to lowercase where needed
+    final_columns = {}
+    for col in df.columns:
+        if col in ['JobNumber', 'Office', 'ProjectTitle', 'Client', 'Currency', 
+                   'GrossFee', 'GrossFeeEarned', 'GrossFeeYetToBeEarned', 
+                   'Status', 'NewProject', 'StartDate', 'ProjectType']:
+            final_columns[col] = col
+        else:
+            final_columns[col] = col.lower()
+    
+    df = df.rename(columns=final_columns)
+    
+    return df
