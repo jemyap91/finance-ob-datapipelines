@@ -1,0 +1,55 @@
+# Unity Catalog Configuration
+catalog:
+  name: "orderbooks_main"
+  schema: "bronze"
+  table: "orderbook_data"
+  process_log_table: "file_processing_log"
+
+# Volume Configuration
+volume:
+  path: "/Volumes/orderbooks_main/raw_files"
+  # folder: "fy25"
+  source_folder: "FY25"
+
+# File Processing
+processing:
+  valid_extensions:
+    - ".xlsx"
+    - ".xlsm"
+    - ".xls"
+  scan_rows: 20
+  file_prefix_pattern: "^1[._]"
+
+# Target Columns
+target_columns:
+  - "JobNumber"
+  - "Office"
+  - "Office (Div)"
+  - "ProjectTitle"
+  - "Client"
+  - "Location (Country)"
+  - "Gross Fee (USD)"
+  - "Fee Earned (USD)"
+  - "Gross Fee Yet To Be Earned (USD)"
+  - "Currency"
+  - "GrossFee"
+  - "GrossFeeEarned"
+  - "GrossFeeYetToBeEarned"
+  - "Status"
+  - "NewProject"
+  - "StartDate"
+  - "Anticipated EndDate"
+  - "ProjectType"
+
+# Column Aliases
+column_aliases:
+  "Location (Country)":
+    - "Location (Country)"
+    - "Location"
+    - "Country"
+  "NewProject":
+    - "NewProject"
+    - "New Project"
+    - "New_Project"
+    - "IsNew"
+    - "Is New"
