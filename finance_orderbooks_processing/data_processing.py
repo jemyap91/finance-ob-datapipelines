@@ -47,7 +47,7 @@ def calculate_row_hash(row_dict):
     """
     Calculate a hash for deduplication based on key fields.
     """
-    key_fields = ['JobNumber', 'ProjectTitle', 'Client', 'Office']
+    key_fields = ['JobNumber', 'ProjectTitle', 'Client', 'Office', 'source_file']
     hash_string = '|'.join([str(row_dict.get(f, '')) for f in key_fields])
     return hashlib.md5(hash_string.encode()).hexdigest()
 

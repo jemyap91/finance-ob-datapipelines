@@ -22,13 +22,6 @@ COLUMN_ALIASES = {
     'NewProject': ['NewProject', 'New Project', 'New_Project', 'IsNew', 'Is New'],
 }
 
-# def list_excel_files(folder: str, exts=VALID_EXTS) -> List[str]:
-#     files = []
-#     for root, _, filenames in os.walk(folder):
-#         for fn in filenames:
-#             if os.path.splitext(fn)[1].lower() in exts:
-#                 files.append(os.path.join(root, fn))
-#     return files
 
 def normalize(name: str) -> str:
     """
@@ -209,11 +202,3 @@ def read_file(path):
     
     return pd.concat(frames, ignore_index=True)
 
-
-# def extract_all(input_dir=INPUT_DIR):
-#     dfs = []
-#     for root, _, files in os.walk(input_dir):
-#         for f in files:
-#             if os.path.splitext(f)[1].lower() in VALID_EXTS:
-#                 dfs.append(read_file(os.path.join(root, f)))
-#     return pd.concat(dfs, ignore_index=True)
